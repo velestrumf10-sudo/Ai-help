@@ -1,85 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2.5D Among Us Game</title>
+    <title>Traitor Hunt</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #141414;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        #gameCanvas {
-            display: block;
-            margin: 0 auto;
-        }
-        #controls {
-            text-align: center;
-            margin: 20px;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; }
+        h1 { text-align: center; }
+        .room { border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 5px; }
+        .evidence { color: blue; }
+        .vote { background-color: lightcoral; padding: 5px; display: inline-block; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>2.5D Among Us Game</h1>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <div id="controls">
-        <button onclick="startGame()">Start Game</button>
+    <h1>Welcome to Traitor Hunt</h1>
+    <div id="game-info">
+        <p>Players must uncover the traitor among them through deduction and strategy.</p>
+    </div>
+    <div id="rooms">
+        <h2>Custom Rooms</h2>
+        <div class="room">Library</div>
+        <div class="room">Cafeteria</div>
+        <div class="room">Archive</div>
+        <div class="room">Control Room</div>
+    </div>
+    <div id="roles">
+        <h2>Roles</h2>
+        <ul>
+            <li>Inspector: Can collect evidence.</li>
+            <li>Defender: Protects players from accusations.</li>
+            <li>Traitor: Sabotages the game from behind the scenes.</li>
+            <li>Innocent: Vote to eliminate the traitor.</li>
+        </ul>
+    </div>
+    <div id="evidence-collection">
+        <h2>Evidence Collection</h2>
+        <p>Players can gather evidence from different rooms to support their claims.</p>
+        <p class="evidence">Evidence found: Footprint near the cafeteria.</p>
+    </div>
+    <div id="voting-mechanics">
+        <h2>Voting Mechanics</h2>
+        <p>Once evidence is collected, players can vote on who they believe the traitor is:</p>
+        <div class="vote">Vote Player 1</div>
+        <div class="vote">Vote Player 2</div>
+        <div class="vote">Vote Player 3</div>
     </div>
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let players = [];
-        let imposters = [];
-        let tasks = [];
-
-        function startGame() {
-            // Initialize the game state
-            players = createPlayers(6);
-            imposters = players.slice(0, 2); // Set two imposters
-            generateTasks();
-            gameLoop();
-        }
-
-        function createPlayers(numPlayers) {
-            let players = [];
-            for (let i = 0; i < numPlayers; i++) {
-                players.push({ id: i, name: `Player ${i + 1}`, x: Math.random() * canvas.width, y: Math.random() * canvas.height });
-            }
-            return players;
-        }
-
-        function generateTasks() {
-            // Generate some tasks randomly
-            tasks = ['Fix Electrical', 'Clean O2', 'Submit Scan', 'WiFi Task', 'Align Engine', 'Detective Task'];
-        }
-
-        function gameLoop() {
-            // Main game loop
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawPlayers();
-            drawTasks();
-            requestAnimationFrame(gameLoop);
-        }
-
-        function drawPlayers() {
-            players.forEach(player => {
-                ctx.fillStyle = imposters.includes(player) ? 'red' : 'blue';
-                ctx.fillRect(player.x, player.y, 20, 20);
-            });
-        }
-
-        function drawTasks() {
-            tasks.forEach((task, index) => {
-                ctx.fillStyle = 'green';
-                ctx.fillRect(50, 50 + index * 25, 150, 20);
-                ctx.fillStyle = 'white';
-                ctx.fillText(task, 55, 65 + index * 25);
-            });
-        }
+        // Game logic goes here
+        console.log('Traitor Hunt game initialized');
     </script>
 </body>
 </html>
